@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Daniel's MBA ROI Calculator</title>
+
+    <style>
+        body {
+            background-color: rgb(22, 22, 14);
+            font-family: 'Trebuchet MS';
+        }
+        
+        h1 {
+            font-size: 35px;
+        }
+        
+        h1 {
+            font-size: 21px;
+            margin-top: 20px;
+        }
+        
+        .calculator {
+            width: 400px;
+            height: 450;
+            background-color: rgb(71, 124, 61);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            padding: 20px 0px 0px 100px;
+            border-radius: 50px;
+            color: white;
+        }
+        
+        input {
+            padding: 7px;
+            width: 70%;
+            margin-top: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align: center; margin-top: 20px; z-index: ;">
+    <img src="Screenshot 2025-05-27 at 2.44.04 PM.png" alt="Screenshot" style="max-width: 100%; height: auto;">
+</div>
+
+    <div class="calculator">
+        <h1>Daniel's MBA ROI Calculator</h1>
+
+        <!-- Calling Calculate function defined in app.js -->
+        <p>Out of pocket expenses ($)     :
+            <input id="expenses" type="number">
+    
+        </p>
+        
+        <p>Amount Borrowed ($)     :
+            <input id="amount-borrowed" type="number">
+   
+        </p>
+
+        <p>Interest Rate :
+            <input id="interest-rate" type="number">
+           
+        </p>
+
+        <p>Current Salary :
+            <input id="current-salary" type="number">
+        
+        </p>
+
+        <p>Expected Starting Salary :
+            <input id="expected-salary" type="number">
+    
+        </p>
+        <p>Expected Signing Bonus :
+            <input id="expected-signing-bonus" type="number">
+      
+        </p>
+        <p>Compensation While in School :
+            <input id="comp-in-school" type="number">
+          
+        </p>
+        <p>Total Interest :
+            <span id="total-interest"></span>
+        </p>
+        <p>Total MBA Investment (tuition + living cost above baseline + interest + forgone income) :
+            <span id="total-MBA-investment"></span>
+        </p>
+        <p>Net Forgone Income :
+            <span id="net-forgone-income"></span>
+        </p>
+
+        <p>Total Return :
+            <span id="total-return"></span>
+        </p>
+
+    <button id="calculate-btn" type="button">Calculate</button>
+    <h2 id="total"></h2>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+
+</html>
