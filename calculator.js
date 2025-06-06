@@ -14,7 +14,9 @@ function loanInterest() {
     const expenses = parseFloat(document.querySelector('#expenses').value);
     const interestRate = parseFloat(document.querySelector('#interest-rate').value) / 100;
     const amountBorrowed = parseFloat(document.querySelector('#amount-borrowed').value);
-
+    console.log('Total amount borrowed:', amountBorrowed);
+    console.log('Total interest rate:', interestRate);
+    console.log('Total expenses:', expenses);
 
     // Calculate real interest rate (adjusted for inflation)
     const realRate = interestRate - inflation_rate;
@@ -131,5 +133,14 @@ function totalReturn() {
     const totalReturn = mbaTotal - nonMbaTotal;
     return totalReturn;
 }
+
+function formatNumber(id, value) {
+    if (id === 'interest-rate') {
+        return value + '%';
+    } else {
+        return Math.round(value / 1000) + 'K';
+    }
+}
+
 
 

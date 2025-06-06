@@ -2,103 +2,78 @@
 <html lang="en">
 
 <head>
-    <title>Daniel's MBA ROI Calculator</title>
+    <title>Daniel's MBA Derp Calculator</title>
+    <link rel="stylesheet" href="index.css">
 
-    <style>
-        body {
-            background-color: rgb(22, 22, 14);
-            font-family: 'Trebuchet MS';
-        }
-        
-        h1 {
-            font-size: 35px;
-        }
-        
-        h1 {
-            font-size: 21px;
-            margin-top: 20px;
-        }
-        
-        .calculator {
-            width: 400px;
-            height: 450;
-            background-color: rgb(71, 124, 61);
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            padding: 20px 0px 0px 100px;
-            border-radius: 50px;
-            color: white;
-        }
-        
-        input {
-            padding: 7px;
-            width: 70%;
-            margin-top: 7px;
-        }
-    </style>
 </head>
 
 <body>
-    <div style="text-align: center; margin-top: 20px; z-index: ;">
-    <img src="Screenshot 2025-05-27 at 2.44.04 PM.png" alt="Screenshot" style="max-width: 100%; height: auto;">
-</div>
-
     <div class="calculator">
-        <h1>Daniel's MBA ROI Calculator</h1>
+        <h1>Daniel's MBA Derp Calculator</h1>
 
-        <!-- Calling Calculate function defined in app.js -->
-        <p>Out of pocket expenses ($)     :
-            <input id="expenses" type="number">
-    
-        </p>
-        
-        <p>Amount Borrowed ($)     :
-            <input id="amount-borrowed" type="number">
-   
-        </p>
-
-        <p>Interest Rate :
-            <input id="interest-rate" type="number">
-           
-        </p>
-
-        <p>Current Salary :
-            <input id="current-salary" type="number">
-        
-        </p>
-
-        <p>Expected Starting Salary :
-            <input id="expected-salary" type="number">
-    
-        </p>
-        <p>Expected Signing Bonus :
-            <input id="expected-signing-bonus" type="number">
-      
-        </p>
-        <p>Compensation While in School :
-            <input id="comp-in-school" type="number">
-          
-        </p>
-        <p>Total Interest :
-            <span id="total-interest"></span>
-        </p>
-        <p>Total MBA Investment (tuition + living cost above baseline + interest + forgone income) :
-            <span id="total-MBA-investment"></span>
-        </p>
-        <p>Net Forgone Income :
-            <span id="net-forgone-income"></span>
-        </p>
-
-        <p>Total Return :
-            <span id="total-return"></span>
-        </p>
-
-    <button id="calculate-btn" type="button">Calculate</button>
-    <h2 id="total"></h2>
+        <button id="calculate-btn" type="button">Calculate</button>
+        <h2 id="total"></h2>
+    </div>
     </div>
 
+    <script>
+
+        // Helper function to create a slider with label and value display
+        function createSlider(id, label, min, max, step, value) {
+            return `
+        <label for="${id}-slider">${label}:
+            <input type="range" id="${id}-slider" min="${min}" max="${max}" step="${step}" value="${value}" style="width:200px;">
+            <span id="${id}-suffix"></span>
+        </label>
+        <br>
+    `;
+        }
+
+        // Insert sliders into the calculator form
+        window.addEventListener('DOMContentLoaded', function () {
+            const calculator = document.querySelector('.calculator');
+            calculator.innerHTML = `
+            <h1>Daniel's MBA ROI Calculator</h1>
+            <p>${createSlider('expenses', 'Out of pocket expenses ($)', 0, 200000, 1000, 0)}</p>
+            <p>${createSlider('amount-borrowed', 'Amount Borrowed ($)', 0, 200000, 1000, 0)}</p>
+            <p>${createSlider('interest-rate', 'Interest Rate (%)', 0, 15, 0.1, 5)}</p>
+            <p>${createSlider('current-salary', 'Current Salary', 0, 300000, 1000, 0)}</p>
+            <p>${createSlider('expected-salary', 'Expected Starting Salary', 0, 500000, 1000, 0)}</p>
+            <p>${createSlider('expected-signing-bonus', 'Expected Signing Bonus', 0, 100000, 500, 0)}</p>
+            <p>${createSlider('comp-in-school', 'Compensation While in School', 0, 100000, 500, 0)}</p>
+            <p>Total Interest : <span id="total-interest"></span></p>
+            <p>Total MBA Investment (tuition + living cost above baseline + interest + forgone income) : <span id="total-MBA-investment"></span></p>
+            <p>Net Forgone Income : <span id="net-forgone-income"></span></p>
+            <p>Total Return : <span id="total-return"></span></p>
+            <button id="calculate-btn" type="button">Calculate</button>
+            <h2 id="total"></h2>
+        `;
+
+            // Add slider-input synchronization for each slider
+            const sliderIds = [
+                'expenses',
+                'amount-borrowed',
+                'interest-rate',
+                'current-salary',
+                'expected-salary',
+                'expected-signing-bonus',
+                'comp-in-school'
+            ];
+            sliderIds.forEach(id => {
+                const slider = document.getElementById(`${id}-slider`);
+                const suffix = document.getElementById(`${id}-suffix`);
+
+                // Initialize the suffix on page load
+                suffix.textContent = formatNumber(id, slider.value);
+
+                slider.addEventListener('input', function () {
+                    suffix.textContent = formatNumber(id, slider.value);
+                });
+            });
+        });
+    
+
+        </script>
     <script src="calculator.js"></script>
 </body>
 
