@@ -1,0 +1,17 @@
+{
+    "name": "basic_calculator",
+    "version": "1.0.0",
+    "description": "A basic calculator application",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"No tests specified\" && exit 0"
+    },
+    "keywords": [
+        "calculator",
+        "basic",
+        "math"
+    ],
+    "author": "",
+    "license": "MIT"
+}
